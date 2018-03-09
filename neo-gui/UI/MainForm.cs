@@ -37,25 +37,13 @@ namespace Neo.UI
         private bool check_nep5_balance = false;
         private DateTime persistence_time = DateTime.MinValue;
 
-        private void StateReader_NotifyUpdate(object sender, BlockNotifyEventArgs e)
-        {
-
-            
-            for(int i = 0; i < e.Notifications.Length; i++) {
-                StateReader_Notify(sender, e.Notifications[i]);
-            }
-            //MessageBox.Show("got event");
-
-        }
-
         public MainForm(XDocument xdoc = null)
         {
             InitializeComponent();
             Instance = this;
 
-            StateReader.Default.Log += StateReader_Log;
-            //StateReader.Default.Notify += StateReader_Notify;
-            Blockchain.Notify += StateReader_NotifyUpdate;
+            StateReader.Log += StateReader_Log;
+            StateReader.Notify += StateReader_Notify;
 
             if (xdoc != null)
             {
@@ -472,7 +460,8 @@ namespace Neo.UI
                         if (engine.State.HasFlag(VMState.FAULT)) continue;
                         string name = engine.EvaluationStack.Pop().GetString();
                         byte decimals = (byte)engine.EvaluationStack.Pop().GetBigInteger();
-                        BigInteger amount = engine.EvaluationStack.Pop().GetArray().Aggregate(BigInteger.Zero, (x, y) => x + y.GetBigInteger());
+                        var stack = (VM.Types.Array)engine.EvaluationStack.Pop();
+                        BigInteger amount = stack.Aggregate(BigInteger.Zero, (x, y) => x + y.GetBigInteger());
                         if (amount == 0)
                         {
                             listView2.Items.RemoveByKey(script_hash.ToString());
@@ -1060,16 +1049,8 @@ namespace Neo.UI
          */
         private void StateReader_Notify(object sender, NotifyEventArgs e)
         {
-            //var stack = e.State.GetArray();
-            string stackType = e.State.GetType().ToString();
-
             // need to add different handlers below for Neo.VM.Types.Array|Neo.VM.Types.Integer
-            if (true) {
-                // don't crash (event log still won't work)
-                return;
-            }
-            var stack = e.State.GetArray();
-
+            var stack = (VM.Types.Array)e.State;
             string[] message = new string[stack.Count];
             UInt160 scriptHash = e.ScriptHash;
 
@@ -1252,9 +1233,9 @@ namespace Neo.UI
                             break;
                         }
                 }
-                
-                AddEventLog_Row(scriptHash, "Notify", String.Join(" / ", message));
             }
+
+            AddEventLog_Row(scriptHash, "Notify", String.Join(" / ", message));
         }
 
         private static DateTime UnixTimeStampToDateTime(double unixTimeStamp)

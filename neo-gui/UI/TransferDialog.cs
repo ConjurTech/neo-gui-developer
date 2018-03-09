@@ -63,7 +63,9 @@ namespace Neo.UI
                         }
                         ApplicationEngine engine = ApplicationEngine.Run(script);
                         if (engine.State.HasFlag(VMState.FAULT)) return null;
-                        var balances = engine.EvaluationStack.Pop().GetArray().Reverse().Zip(addresses, (i, a) => new
+                        var stack = (VM.Types.Array)engine.EvaluationStack.Pop();
+                        stack.Reverse();
+                        var balances = stack.Zip(addresses, (i, a) => new
                         {
                             Account = a,
                             Value = i.GetBigInteger()
