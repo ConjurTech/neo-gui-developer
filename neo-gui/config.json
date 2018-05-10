@@ -1,17 +1,16 @@
 ﻿{
-  "ApplicationConfiguration": {
-    "Paths": {
-      "Chain": "ChainTestNet",
-      "CertCache": "Certs"
-    },
-    "P2P": {
-      "Port": 20333,
-      "WsPort": 20334
-    },
-    "Urls": {
-      "AddressUrl": "http://testnet.antcha.in/address/info/{0}",
-      "AssetUrl": "http://testnet.antcha.in/tokens/hash/{0}",
-      "TransactionUrl": "http://testnet.antcha.in/tx/hash/{0}"
+    "ApplicationConfiguration": {
+        "Paths": {
+            "Chain": "Chains/Switcheo_Notif"
+        },
+        "P2P": {
+            "Port": 20333,
+            "WsPort": 20334
+        },
+        "RPC": {
+            "Port": 20331,
+            "SslCert": "",
+            "SslCertPassword": ""
+        }
     }
-  }
 }

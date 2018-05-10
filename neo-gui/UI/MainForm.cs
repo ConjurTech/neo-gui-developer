@@ -249,7 +249,6 @@ namespace Neo.UI
             Task.Run(() =>
             {
                 const string acc_path = "chain.acc";
-                const string acc_zip_path = acc_path + ".zip";
                 if (File.Exists(acc_path))
                 {
                     using (FileStream fs = new FileStream(acc_path, FileMode.Open, FileAccess.Read, FileShare.None))
@@ -258,16 +257,7 @@ namespace Neo.UI
                     }
                     File.Delete(acc_path);
                 }
-                else if (File.Exists(acc_zip_path))
-                {
-                    using (FileStream fs = new FileStream(acc_zip_path, FileMode.Open, FileAccess.Read, FileShare.None))
-                    using (ZipArchive zip = new ZipArchive(fs, ZipArchiveMode.Read))
-                    using (Stream zs = zip.GetEntry(acc_path).Open())
-                    {
-                        ImportBlocks(zs);
-                    }
-                    File.Delete(acc_zip_path);
-                }
+
                 Blockchain.PersistCompleted += Blockchain_PersistCompleted;
                 Program.LocalNode.Start(Settings.Default.P2P.Port, Settings.Default.P2P.WsPort);
             });

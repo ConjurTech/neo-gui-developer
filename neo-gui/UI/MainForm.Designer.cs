@@ -78,9 +78,9 @@
             this.importWatchOnlyAddressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.创建智能合约SToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.多方签名MToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.自定义CToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
+            this.自定义CToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.查看私钥VToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewContractToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -121,11 +121,11 @@
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.eventLogMessageType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip4 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.CopySHtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CopyMessagetoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.eventLogMessageType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -325,8 +325,8 @@
             // 
             // optionsToolStripMenuItem
             // 
-            resources.ApplyResources(this.optionsToolStripMenuItem, "optionsToolStripMenuItem");
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            resources.ApplyResources(this.optionsToolStripMenuItem, "optionsToolStripMenuItem");
             this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
             // 
             // 帮助HToolStripMenuItem
@@ -788,7 +788,6 @@
             this.CopySHtoolStripMenuItem,
             this.CopyMessagetoolStripMenuItem});
             this.contextMenuStrip4.Name = "contextMenuStrip4";
-            resources.ApplyResources(this.contextMenuStrip4, "contextMenuStrip4");
             // 
             // CopySHtoolStripMenuItem
             // 
@@ -802,14 +801,11 @@
             resources.ApplyResources(this.CopyMessagetoolStripMenuItem, "CopyMessagetoolStripMenuItem");
             this.CopyMessagetoolStripMenuItem.Click += new System.EventHandler(this.CopyMessagetoolStripMenuItem_Click);
             // 
-            // eventLogMessageType
-            // 
-            resources.ApplyResources(this.eventLogMessageType, "eventLogMessageType");
-            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
@@ -829,8 +825,10 @@
             this.tabPage3.ResumeLayout(false);
             this.contextMenuStrip3.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
+            this.contextMenuStrip4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion
